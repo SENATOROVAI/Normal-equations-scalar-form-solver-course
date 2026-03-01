@@ -1,172 +1,121 @@
 # Quick Start
 
-This guide helps you get up and running quickly with the **L-BFGS Solver Course** project — from installation to running your first optimization.
+This guide explains how to quickly run and understand the **Normal Equations solver (scalar form)** for simple linear regression.
 
 ---
 
 ## 🚀 1. Clone the Repository
 
-First, fork the repository (optional) and clone it locally:
-
 ```bash
-git clone https://github.com/SENATOROVAI/lbfgs-solver-course.git
-cd lbfgs-solver-course
+git clone https://github.com/USERNAME/Normal-equations-scalar-form-solver-course.git
+cd Normal-equations-scalar-form-solver-course
 ````
 
 ---
 
-## 🧠 2. Set Up Python Environment
+## 🧠 2. Mathematical Background
 
-We recommend using a virtual environment:
+We solve the simple linear regression problem:
 
-### Create and activate:
+$$
+y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
+$$
 
-```bash
-python3 -m venv venv
-source venv/bin/activate      # macOS / Linux
-venv\Scripts\activate         # Windows
-```
+in least squares form:
+
+$$
+\min_{\beta_0, \beta_1} \sum_{i=1}^{n} (y_i - \beta_0 - \beta_1 x_i)^2
+$$
 
 ---
 
-## 📦 3. Install Dependencies
+## 🔎 3. Closed-Form Solution
 
-Install required packages:
+Using the normal equations:
+
+$$
+(X^T X)\beta = X^T y
+$$
+
+The solution is:
+
+$$
+\beta = (X^T X)^{-1} X^T y
+$$
+
+For scalar regression, the slope and intercept can be written explicitly:
+
+$$
+\hat{\beta}_1 =
+\frac{\sum (x_i - \bar{x})(y_i - \bar{y})}
+{\sum (x_i - \bar{x})^2}
+$$
+
+$$
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}
+$$
+
+---
+
+## 💻 4. Run the Solver
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-If you are using a package manager like Poetry:
-
-```bash
-poetry install
-```
-
----
-
-## 📁 4. Explore Project Structure
-
-```text
-lbfgs-solver-course/
-│
-├── docs/                  # GitHub Pages & documentation
-├── theory/                # Mathematical derivations
-├── implementation/        # Python solver code
-├── experiments/           # Notebooks and benchmarks
-├── tests/                 # Test suite
-├── README.md
-├── QUICKSTART.md
-├── LICENSE
-└── requirements.txt
-```
-
----
-
-## 🧪 5. Run Your First Example
-
-A minimal usage example with a quadratic objective:
-
-```python
-import numpy as np
-from solver.lbfgs import LBFGS
-
-def f(x):
-    return np.sum(x**2)
-
-def grad(x):
-    return 2*x
-
-# Initial guess
-x0 = np.array([5.0, -3.0, 2.0])
-
-optimizer = LBFGS()
-x_opt = optimizer.minimize(f, grad, x0)
-
-print("Optimal x:", x_opt)
-```
-
-Save this as `example.py` and run:
+Run the example:
 
 ```bash
 python example.py
 ```
 
----
+Or import the solver in Python:
 
-## 🧰 6. Run Notebooks
+```python
+from solver import normal_equation_scalar
 
-You can explore interactive notebooks in the `experiments/` folder:
+beta0, beta1 = normal_equation_scalar(x, y)
 
-```bash
-jupyter notebook
-```
-
-Or with JupyterLab:
-
-```bash
-jupyter lab
+print(beta0, beta1)
 ```
 
 ---
 
-## 🚀 7. Run Tests
+## 📊 5. Visualization (If Included)
 
-If you added tests to the repository:
+If the project contains visualization:
+
+```bash
+python visualize.py
+```
+
+You should see:
+
+* Data points
+* Regression line
+* Fitted model
+
+---
+
+## 🧪 6. Run Tests
+
+If tests are included:
 
 ```bash
 pytest
 ```
 
-Ensure all tests pass before submitting PRs.
-
 ---
 
-## 📊 8. Run Benchmarks
+## 🎯 What You Learned
 
-Benchmark scripts in `experiments/` produce performance graphs:
+After running this project, you understand:
 
-```bash
-python experiments/quadratic_tests.py
-```
-
-Add your own benchmarks or compare with SciPy’s solver.
-
----
-
-## 🎯 9. Tips & Useful Commands
-
-* Check code style:
-
-```bash
-black .
-flake8 .
-```
-
-* Format with:
-
-```bash
-isort .
-```
+✔ How normal equations are derived
+✔ How closed-form least squares works
+✔ Why matrix inversion appears
+✔ How scalar form relates to matrix form
 
 ---
-
-## ❓ 10. Need Help?
-
-If you run into issues:
-
-✔ Check `TROUBLESHOOTING.md`
-✔ Search existing issues
-✔ Open a new issue with full description
-
----
-
-## 🎉 You’re Ready!
-
-You should now be able to:
-
-* Understand solver internals
-* Run optimization examples
-* Contribute code with confidence
-
-Happy optimizing! 
