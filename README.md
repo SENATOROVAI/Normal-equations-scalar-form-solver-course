@@ -7,6 +7,8 @@
 [![Website](https://img.shields.io/badge/website-live-blue.svg)](https://senatorovai.github.io/Normal-equations-scalar-form-solver-course/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18818738.svg)](https://doi.org/10.5281/zenodo.18819962)
+[![Code Style](https://img.shields.io/badge/code%20style-black-black)]()
+[![Pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen)]()
 
 Research-oriented implementation of the **Normal Equations method** for solving **Simple Linear Regression** in closed form.
 
