@@ -37,7 +37,7 @@ abstract: >
 preferred-citation:
   type: report
   doi: "10.5281/zenodo.18819962"
-  title: "L-BFGS Solver Course"
+  title: "Normal Equations Scalar Form Solver Course"
   authors:
     - family-names: "Senatorov"
       given-names: "Ruslan"
